@@ -18,24 +18,20 @@ const spotifyScope = [
 const signInURL = `https://accounts.spotify.com/authorize?` +
 new URLSearchParams({
   response_type: 'code',
-  client_id:spotifyClientId,
+  client_id:process.env.SPOTIFY_ID,
   scope: spotifyScope.join(','),
-  redirect_uri: spotifyRedirectUrl,
+  redirect_uri: process.env.REDIRECT_URI,
 }).toString();
 
 export {
-  spotifyClientId,
-  spotifyClientSecretKey,
-  spotifyRedirectUrl,
   spotifyScope,
-  jwtSecretSign,
   signInURL,
 };
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: spotifyClientId,
-  clientSecret: spotifyClientSecretKey,
-  redirectUri: spotifyRedirectUrl,
+  clientId: process.env.SPOTIFY_ID,
+  clientSecret: process.env.SPOTIFY_SECRET,
+  redirectUri:  process.env.REDIRECT_URI,
 });
 
 export default spotifyApi;
