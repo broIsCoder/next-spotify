@@ -1,3 +1,4 @@
+import Container from "@/components/Container";
 import { options } from "../api/auth/[...nextauth]/options" 
 import { getServerSession } from "next-auth"
 import Link from "next/link";
@@ -8,7 +9,7 @@ const HomePage = async() => {
   return (
     <div>
         {session ?
-            <div className="bg-red-700">
+            <div className="">
                 <p>You are logged In</p>
                 <p>{session?.user.name}</p>
                 <p>{session?.user.email}</p>

@@ -55,6 +55,7 @@ export const options = {
             // Return previous token , if access token is not expired yet
             if(Date.now()< token.accessTokenExpires){
                 console.log("Existing Token is still valid")
+                console.log("Previous Token : ",token)
                 return token ;
             }
             
@@ -64,7 +65,7 @@ export const options = {
         },
 
         async session({session,token}){
-            console.log("Token : ",token);
+            console.log("Token Session Callback Function : ",token);
             console.log("Session Callback Function  : ",session);
             session.user.accessToken = token.accessToken ;
             session.user.refreshToken = token.refreshToken ;

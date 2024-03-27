@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ReduxProvider from "@/redux/ReduxProvider";
 import AuthProvider from "@/components/AuthProvider";
+import RecoilProvider from '@/recoil/recoilProvider'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,11 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </ReduxProvider>
+        <AuthProvider>
+          <RecoilProvider>{children}</RecoilProvider>
+        </AuthProvider>
       </body>
     </html>
   );
