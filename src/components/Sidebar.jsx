@@ -2,26 +2,23 @@
 import { useState } from 'react';
 import { FaHome, FaSearch } from 'react-icons/fa';
 import LinkComponent from './LinkComponent';
-import Playlists from './Playlists';
-import Artists from './Artists';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
     const { data: session, status } = useSession();
-    console.log("sidebar",session );
 
     const [currentTab, setcurrentTab] = useState('playlists')
     return (
         <div className='h-full bg-black flex flex-col gap-2 md:rounded-md max-w-[270px] md:max-w-[50vw] w-[270px] z-10 min-w-[270px] md:resize-x overflow-auto overflow-y-hidden duration-0'>
             <div className='flex flex-col' style={{ height: "100px" }}>
-                <LinkComponent title="Home" icon={<FaHome />} href={"/"} classname='h-full text-xl hover:bg-gray-800 bg-gray-900 duration-150 p-2 rounded-t-md font-semibold' />
-                <LinkComponent title="Search" icon={<FaSearch />} href={"/search"} classname='h-full text-xl hover:bg-gray-800 bg-gray-900 duration-150 p-2 rounded-b-md font-semibold' />
+                <LinkComponent title="Home" icon={<FaHome />} href={"/"} classname='h-full text-xl hover:bg-gray-800 bg-gray-900 text-gray-400 hover:text-white duration-300 p-2 rounded-t-md font-semibold' />
+                <LinkComponent title="Search" icon={<FaSearch />} href={"/search"} classname='h-full text-xl hover:bg-gray-800 bg-gray-900 text-gray-400 hover:text-white duration-300 p-2 rounded-b-md font-semibold' />
             </div>
 
-            <div className='flex flex-col h-full bg-gray-900 rounded-md p-2 space-y-2'>
+            <div className='flex flex-col h-full flex-1 bg-gray-900 rounded-md p-2 space-y-2'>
                 {
-                    status === "loading" && !session ?
+                    status === "loading" ?
                         <div className='h-full w-full flex justify-center items-center'>
                             <img src="/loading.gif" className='min-w-[100px] max-w-[100px] min-h-[100px] max-h-[100px]' alt="loading content..." />
                         </div>
@@ -35,9 +32,9 @@ const Sidebar = () => {
                                     </div>
                                 </div>
                                 {currentTab === "playlists" ?
-                                    <Playlists />
+                                    children[0]
                                     :
-                                    <Artists />
+                                    children[1]
                                 }
                             </div>
                             :
@@ -51,4 +48,4 @@ const Sidebar = () => {
     )
 };
 
-export default Sidebar;
+export default Sidebar

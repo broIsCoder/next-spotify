@@ -1,11 +1,9 @@
-import Container from "@/components/Container";
 import { options } from "../api/auth/[...nextauth]/options" 
 import { getServerSession } from "next-auth"
 import Link from "next/link";
 
 const HomePage = async() => {
     const session = await getServerSession(options);
-    console.log("Session Home : ",session)
   return (
     <div>
         {session ?

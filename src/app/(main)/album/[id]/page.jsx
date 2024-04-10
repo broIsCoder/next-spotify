@@ -1,4 +1,4 @@
-import Container from '@/components/Container'
+"use client"
 import React from 'react'
 
 const AlbumPage = ({params}) => {

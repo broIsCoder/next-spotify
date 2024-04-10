@@ -13,6 +13,9 @@ const spotifyScope = [
   "user-library-read",
   "user-read-playback-state",
   "user-read-currently-playing",
+  "user-follow-read",
+  "app-remote-control",
+  "streaming"
 ];
 
 const signInURL = `https://accounts.spotify.com/authorize?` +
@@ -24,7 +27,6 @@ new URLSearchParams({
 }).toString();
 
 export {
-  spotifyScope,
   signInURL,
 };
 
